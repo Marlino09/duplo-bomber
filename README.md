@@ -9,3 +9,5 @@ Private SMS-Bomber
 - pip3 install -r requirements.txt
 # Start
 python3 duplo_spam.py
+# License
+Mozilla Public License 2.0
