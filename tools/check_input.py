@@ -8,11 +8,6 @@ class CheckInput:
             phone = re.sub("[^0-9]", "", phone)  # оставляет только цифры
             if phone.startswith("0") or phone.startswith("+", 1):
                 phone = "38" + phone
-                if len(phone) != 12:  # 380961115522
-                    print("\033[1;31m" + "Слишком много символов!")
-                    exit()
-                else:
-                    return phone
             elif phone.startswith("380") and len(phone) == 12:
                 return phone
             elif phone == "" or phone == " ":
