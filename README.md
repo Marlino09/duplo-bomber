@@ -1,5 +1,5 @@
 # Duplo Bomber
-Private SMS-Bomber
+Private SMS-Bomber (for Ukraine phone numbers)
 # Install
 - apt update && apt upgrade
 - pkg install python
