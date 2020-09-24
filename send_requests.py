@@ -312,7 +312,7 @@ def send_requests(phone: str, count: int):
         iteration += 1
 
         if iteration >= 5 and count >= 10:
-            sleep(randint(4, 7))
+            sleep(randint(2, 4))
 
         print(
             f"\033[1;{choice(['32m', '33m', '34m', '35m', '36m'])}{iteration}/{count} кругов"
