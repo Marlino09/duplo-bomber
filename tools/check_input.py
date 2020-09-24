@@ -13,9 +13,11 @@ class CheckInput:
             elif phone == "" or phone == " ":
                 print("\033[1;31m" + "Номер введён некорректно!")
                 exit()
+            elif phone.startswith("+"):
+                phone = phone[1:]
+                return phone
             else:
-                print("\033[1;31m" + "Неправильное кол-во символов!")
-                exit()
+                return phone
         except Exception:
             print("\033[1;31m" + "Номер введён некорректно!")
             exit()
