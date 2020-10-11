@@ -14,7 +14,7 @@ def send_requests(phone: str, count: int):
     vodafone = (
         f"+{phone[:2]}("
         + f"{phone[2:5]}) "
-        + f"{phone[5:8]}-" 
+        + f"{phone[5:8]}-"
         + f"{phone[8:10]}-"
         + f"{phone[10:12]}"
     )
@@ -24,7 +24,7 @@ def send_requests(phone: str, count: int):
         requests = [
             grequests.head(
                 "https://secure.online.ua/ajax/check_phone/",
-                params={"reg_phone": "+"+phone},
+                params={"reg_phone": "+" + phone},
                 headers=head,
             ),
             grequests.post(
@@ -307,8 +307,7 @@ def send_requests(phone: str, count: int):
                 headers=head,
             ),
         ]
-        grequests.map(requests, gtimeout=5)
-        # grequests.imap(requests, exception_handler=exception_handler)
+        grequests.map(requests, gtimeout=3)
         iteration += 1
 
         if iteration >= 5 and count >= 10:
