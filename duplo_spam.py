@@ -1,11 +1,11 @@
 from tools.check_input import CheckInput
-from tools.generate_info import GenerateInfo
-from tools.text import *
-from send_requests import *
+from tools.text import banner, cursor, clear, replace
+from send_requests import send_requests
 import os
 
 
-clear_screen = lambda: os.system("cls") if os.sys.platform == "win32" else os.system("clear")
+def clear_screen(): return os.system(
+    "cls") if os.sys.platform == "win32" else os.system("clear")
 
 
 def main():
@@ -20,7 +20,8 @@ def main():
     clear_screen()
     print(banner)
     print(
-        "\033[3;32m*Если вы ввели больше 10 циклов, то после 5-го скорость спама уменьшится\033[0m"
+        """\033[3;32m*Если вы ввели больше 10 циклов,
+        то после 5-го скорость спама уменьшится\033[0m"""
     )
     send_requests(phone, count)
     clear_screen()
