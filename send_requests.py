@@ -18,7 +18,7 @@ def exception_handler(request, exception):
                 + FG.lightred
                 + f"{url.netloc.upper()} смс не отправлено!"
                 + RESET_ALL,
-                FG.purple + exception + RESET_ALL,
+                FG.purple + str(exception) + RESET_ALL,
             )
         else:
             print(
