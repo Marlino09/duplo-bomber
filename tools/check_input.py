@@ -6,20 +6,18 @@ class CheckInput:
         self.phone = phone
         try:
             phone = re.sub("[^0-9]", "", phone)  # оставляет только цифры
-            if phone.startswith("0") or phone.startswith("+", 1):
+            if phone.startswith("0"):
                 phone = "38" + phone
-            elif phone.startswith("380") and len(phone) == 12:
                 return phone
             elif phone == "" or phone == " ":
-                print("\033[1;31m" + "Номер введён некорректно!")
+                print("\033[1;31m" + "Номер введён некорректно!\033[0m")
                 exit()
             elif phone.startswith("+"):
-                phone = phone[1:]
-                return phone
+                return phone[1:]
             else:
                 return phone
         except Exception:
-            print("\033[1;31m" + "Номер введён некорректно!")
+            print("\033[1;31m" + "Номер введён некорректно!\033[0m")
             exit()
 
     def verification_cycles(self, cycles: str) -> int:
