@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from user_agent import generate_user_agent
 
 head = {

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 from send_requests import send_requests

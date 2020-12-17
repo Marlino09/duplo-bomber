@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 
 from .colors import BLINK, BOLD, FG, RESET_ALL, REVERSE

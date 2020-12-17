@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 RESET_ALL = "\033[0m"
 BOLD = "\033[01m"
 REVERSE = "\033[07m"
