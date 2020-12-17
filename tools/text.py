@@ -1,6 +1,6 @@
-from .colors import RESET_ALL, BOLD, REVERSE, BLINK, FG
 import random
 
+from .colors import BLINK, BOLD, FG, RESET_ALL, REVERSE
 
 colors = random.choice(
     [FG.green, FG.orange, FG.blue, FG.purple, FG.cyan, FG.yellow, FG.pink]

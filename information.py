@@ -1,6 +1,5 @@
 from user_agent import generate_user_agent
 
-
 head = {
     "User-Agent": generate_user_agent(),
     "X-Requested-With": "XMLHttpRequest",

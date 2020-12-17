@@ -1,8 +1,9 @@
-from tools.colors import RESET_ALL
-from tools.check_input import CheckInput
-from tools.text import banner, cursor, replace
-from send_requests import send_requests
 import os
+
+from send_requests import send_requests
+from tools.check_input import CheckInput
+from tools.colors import RESET_ALL
+from tools.text import banner, cursor, replace
 
 
 def clear_screen():

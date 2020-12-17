@@ -1,12 +1,14 @@
-from tools.colors import RESET_ALL, FG, BOLD
-import grequests
-from urllib.parse import urlparse
-from information import *
 import json
+from random import choice, randint
 from time import sleep
-from tools.text import *
-from random import randint, choice
+from urllib.parse import urlparse
+
+import grequests
+
+from information import *
+from tools.colors import BOLD, FG, RESET_ALL
 from tools.generate_info import GenerateInfo
+from tools.text import *
 
 
 def exception_handler(request, exception):
