@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 import grequests
 
 from information import *
-from tools.colors import BOLD, FG, RESET_ALL
+from tools.colors import BOLD, FG, BG, RESET_ALL
 from tools.generate_info import GenerateInfo
 from tools.text import *
 
@@ -15,19 +15,24 @@ from tools.text import *
 def exception_handler(request, exception):
     if request.response is None:
         url = urlparse(request.url)
+        url = url.netloc.upper() + RESET_ALL + "{}"
         if exception is not None:
+            sleep(float(f".{choice(['012', '035'])}"))
             print(
-                BOLD
-                + FG.lightred
-                + f"{url.netloc.upper()} смс не отправлено!"
+                RESET_ALL
+                + BOLD
+                + BG.red
+                + f"{url.format(FG.lightred) + BOLD} смс не отправлено!"
                 + RESET_ALL,
                 FG.purple + str(exception) + RESET_ALL,
             )
         else:
+            sleep(float(f".{choice(['012', '035'])}"))
             print(
-                BOLD
-                + FG.lightgreen
-                + f"{url.netloc.upper()} смс отправлено!"
+                RESET_ALL
+                + BOLD
+                + BG.green
+                + f"{url.format(FG.lightgreen) + BOLD} смс отправлено!"
                 + RESET_ALL
             )
 
