@@ -3,7 +3,7 @@ import os
 
 from send_requests import send_requests
 from tools.check_input import CheckInput
-from tools.colors import RESET_ALL
+from tools.colors import RESET_ALL, FG, BG, BOLD, BLINK
 from tools.text import banner, cursor, replace
 
 
@@ -26,15 +26,16 @@ def main():
     print(banner)
     if count >= 10:
         print(
-            "\033[3;32m*Вы ввели больше 10 циклов, "
-            "после 5-го скорость спама уменьшится" + RESET_ALL
+            f"{FG.green}*Вы ввели больше 10 циклов, "
+            f"после 5-го скорость спама уменьшится{RESET_ALL}"
         )
     send_requests(phone, count)
     clear_screen()
     print(
-        "\033[1;32mГотово!",
-        f"Телефон: \033[35m{phone}\033[1;32m",
-        f"Колличество циклов: \033[35m{count}",
+        BOLD +
+        f"{FG.green}Готово!",
+        f"Телефон: {FG.purple}{phone}",
+        f"{FG.green}Колличество циклов: {FG.purple}{count}",
         sep="\n",
     )
 

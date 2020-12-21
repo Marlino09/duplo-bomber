@@ -3,9 +3,18 @@ import random
 
 from .colors import BLINK, BOLD, FG, RESET_ALL, REVERSE
 
-colors = random.choice(
-    [FG.green, FG.orange, FG.blue, FG.purple, FG.cyan, FG.yellow, FG.pink]
-)
+
+colors_list = [
+    FG.orange,
+    FG.blue,
+    FG.purple,
+    FG.cyan,
+    FG.yellow,
+    FG.pink,
+    FG.lightblue,
+    FG.lightcyan,
+]
+colors = random.choice(colors_list)
 replace = REVERSE + colors
 banner = (
     BLINK
