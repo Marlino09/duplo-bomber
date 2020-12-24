@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+from colors import RESET_ALL, BOLD, FG
 
 
 class CheckInput:
@@ -11,14 +12,14 @@ class CheckInput:
                 phone = "38" + phone
                 return phone
             elif phone == "" or phone == " ":
-                print("\033[1;31m" + "Номер введён некорректно!\033[0m")
+                print(f"{BOLD + FG.red}Номер введён некорректно!{RESET_ALL}")
                 exit()
             elif phone.startswith("+"):
                 return phone[1:]
             else:
                 return phone
         except Exception:
-            print("\033[1;31m" + "Номер введён некорректно!\033[0m")
+            print(f"{BOLD + FG.red}Номер введён некорректно!{RESET_ALL}")
             exit()
 
     def verification_cycles(self, cycles: str) -> int:
