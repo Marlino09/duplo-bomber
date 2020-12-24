@@ -3,7 +3,6 @@ import random
 
 from .colors import BLINK, BOLD, FG, RESET_ALL, REVERSE
 
-
 colors_list = [
     FG.orange,
     FG.blue,

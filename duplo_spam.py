@@ -3,7 +3,7 @@ import os
 
 from send_requests import send_requests
 from tools.check_input import CheckInput
-from tools.colors import RESET_ALL, FG, BG, BOLD, BLINK
+from tools.colors import BOLD, FG, RESET_ALL
 from tools.text import banner, cursor, replace
 
 
@@ -32,8 +32,7 @@ def main():
     send_requests(phone, count)
     clear_screen()
     print(
-        BOLD +
-        f"{FG.green}Готово!",
+        BOLD + f"{FG.green}Готово!",
         f"Телефон: {FG.purple}{phone}",
         f"{FG.green}Колличество циклов: {FG.purple}{count}",
         sep="\n",
